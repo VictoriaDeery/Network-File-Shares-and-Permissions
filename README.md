@@ -78,17 +78,21 @@ Folder: “no-access”, Group: “Domain Admins”, “Permissions: “Read/Wri
 <p></p>
 1. Go back to DC-1, in Active Directory, create a security group called “ACCOUNTANTS” via active directory users and computers -> right-click "mydomain.com"-> "new" -> "organizational Unit" -> name it "_GROUPS." Now open "_GROUPS," right-clcik in the space ->"new"-> "group" -> name it “ACCOUNTANTS” -> leave presets and select "ok"
 <p>
-  ![image](https://github.com/user-attachments/assets/ed40d73c-f794-48f1-96d0-dbae72121da0)
+"https://github.com/user-attachments/assets/ed40d73c-f794-48f1-96d0-dbae72121da0)
 <p></p>
 2. Using dc-1 set the following permissions on the “accounting” folder created earlier (right-clcik start to get to file explorer -> Windows (C:) -> "accounting". right-click the "accounting" folder -> properties -> "sharing" tab -> share -> type "ACCOUNTANTS" -> "add" -> they will be populated below with "read" and a drop down, select to change to "read/write" -> share -> done ->ok -> ok):
 Folder: “accounting”, Group: “ACCOUNTANTS”, Permissions: “Read/Write”
 <p>
   (before: ![image](https://github.com/user-attachments/assets/f19c0f1a-2b31-4699-8830-29bea677cde9)
+now seeing the accounting folder as a regular user within the accounting group, but no access:
+ ![image](https://github.com/user-attachments/assets/3ce1e2f7-6802-43c9-b7eb-b64f1d584856)
+![image](https://github.com/user-attachments/assets/20f3ba4f-9fee-4fae-a047-f645f55ad795)
+![image](https://github.com/user-attachments/assets/de67c2d6-d073-4435-9018-08f0ac46a8ae)
 
-3.On Client-1, as a <regularuser> ( in my case "ban.qos"), try to access the accountants folder. Since "accountants" is shared out now, the regular user will now see the accounting folder, however it should fail to open. First log out of Client-1 as <regularuser>. Then on dc-1, make <regularuser> a member of the “ACCOUNTANTS”  Security Group. Lastly, sign back into Client-1 as <regularuser> and try to access the “accounting” share in \\DC-1\ - Does it work now?
-
+3.On Client-1, as a <regularuser> ( in my case "ban.qos"), try to access the accountants folder by re-opening File explorer and typing "\\dc-1" which is how you map to a computer on the network. Since "accountants" is shared out now, the regular user will now see the accounting folder, however it should fail to open because they are not yet a member of the accounting group. Let's change that. Now, log out of Client-1 as <regularuser>. Then on dc-1, make <regularuser> a member of the “ACCOUNTANTS”  Security Group by going to mydomain.com -> "_GROUPS" -> double click  "ACCOUNTANTS" ->members -> add-> enter the name -> check name ->add ->ok ->  apply -> ok. Lastly, sign back into Client-1 as <regularuser> restart, and then open file Expolere and map to dc-1 using \\dc-1 and double click the "accounting" folder which you should now be able to open. Right-click in the space -> new -> text document to create a new text document in this folder. Open the file and edit it. It should all work now.
 
 </p>
+We created a Security Group in Active Directory called "ACCOUNTANTS." We shared out the folder and gave the security group we created, permission to read and write. We tested access to the folder with our user without being a member of the group yet and it failed. We logged out and restarted. Then we added that user to the accountant security group member list. We logged back in as that user, and successfully accessed the folder.
 <p>
 <img src="https://github.com/user-attachments/assets/412f0e44-cf11-4ae9-87e0-3cf97abe8377" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <img src="https://github.com/user-attachments/assets/85712f86-a29f-4b3e-9767-bef7c3f8951d" height="80%" width="80%" alt="Disk Sanitization Steps"/>
