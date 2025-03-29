@@ -38,7 +38,7 @@ In this lab, we will share out resources over the network and create File Shares
 
 <p align="center">
 
-<img src="https://github.com/user-attachments/assets/30f43066-78a7-448f-9a22-eef5090994a6" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 <p>
 Overview: A file share is a folder that lives on a computer somewhere on the network that you are able to access. You can connect it to your own computer to make it look like it is on your actual computer. But the distinction is, you are accessing anothers computers' folder over the network. Here, we will create folders, assign permissions, and verify the set permissions of the files.
 
