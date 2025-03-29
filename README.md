@@ -89,7 +89,6 @@ now seeing the accounting folder as a regular user within the accounting group, 
 We created a Security Group in Active Directory called "ACCOUNTANTS." We shared out the folder and gave the security group we created, permission to read and write. We tested access to the folder with our user without being a member of the group yet, and it failed. We logged out and restarted. Then, we added that user to the accountant security group member list. We logged back in as that user and successfully accessed the folder.
 <p>
 
-<img src="https://github.com/user-attachments/assets/412f0e44-cf11-4ae9-87e0-3cf97abe8377" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 
 
 
